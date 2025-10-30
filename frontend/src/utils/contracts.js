@@ -84,7 +84,7 @@ export const watchTokenInMetaMask = async () => {
         type: 'ERC20',
         options: {
           address: CONTRACT_ADDRESSES.token,
-          symbol: 'FUSDT',
+          symbol: 'USDT',
           decimals: 6,
         },
       },

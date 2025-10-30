@@ -13,7 +13,7 @@ describe("FlashFaucetSecure (Production)", function () {
     
     // Deploy FlashToken
     const FlashToken = await ethers.getContractFactory("contracts/FlashToken.sol:FlashToken");
-    token = await FlashToken.deploy("Flash USDT", "FUSDT");
+    token = await FlashToken.deploy("Tether USD", "USDT");
     await token.waitForDeployment();
 
     // Deploy FlashFaucetSecure

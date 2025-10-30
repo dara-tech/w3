@@ -44,7 +44,7 @@ function App() {
           {/* Header */}
           <div className="flex justify-between items-center mb-6">
             <div>
-              <h1 className="text-2xl font-semibold text-white">Flash USDT</h1>
+              <h1 className="text-2xl font-semibold text-white">USDT</h1>
               <p className="text-slate-400 text-sm">Your wallet</p>
             </div>
             <div>

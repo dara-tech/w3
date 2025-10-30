@@ -1,11 +1,11 @@
-# Flash USDT Simulator
+# USDT Simulator
 
-Educational Flash-USDT simulator for testing on testnets. This project demonstrates a secure flash loan faucet system built with Solidity smart contracts and a React frontend.
+Educational USDT simulator for testing on testnets. This project demonstrates a secure flash loan faucet system built with Solidity smart contracts and a React frontend.
 
 ## Features
 
-- **Flash Token (USDT-like)**: ERC20 token implementation for testing
-- **Flash Faucet Secure**: Secure flash loan faucet with anti-flash loan attack mechanisms
+- **USDT Token**: ERC20 token implementation for testing
+- **Secure Faucet**: Secure flash loan faucet with anti-flash loan attack mechanisms
 - **React Frontend**: Modern web interface for interacting with the contracts
 - **Hardhat Integration**: Complete development and testing environment
 

@@ -7,8 +7,8 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Pausable.sol";
 
 /**
- * @title FlashToken
- * @notice Production-ready ERC-20 token for Flash USDT
+ * @title USDT
+ * @notice Production-ready ERC-20 token for USDT
  * @dev Secured with OpenZeppelin contracts and rate limiting
  * 
  * Security Features:
@@ -55,12 +55,12 @@ contract FlashToken is ERC20, Ownable, Pausable, ReentrancyGuard {
      * @param amount Amount of tokens to mint (in smallest unit, 6 decimals)
      */
     function mint(address to, uint256 amount) external whenNotPaused nonReentrant {
-        require(msg.sender == faucetContract, "FlashToken: only faucet can mint");
-        require(to != address(0), "FlashToken: cannot mint to zero address");
-        require(amount > 0, "FlashToken: amount must be greater than zero");
+        require(msg.sender == faucetContract, "USDT: only faucet can mint");
+        require(to != address(0), "USDT: cannot mint to zero address");
+        require(amount > 0, "USDT: amount must be greater than zero");
         require(
             totalMinted + amount <= MAX_SUPPLY,
-            "FlashToken: mint would exceed max supply"
+            "USDT: mint would exceed max supply"
         );
         
         totalMinted += amount;
@@ -74,7 +74,7 @@ contract FlashToken is ERC20, Ownable, Pausable, ReentrancyGuard {
      * @param _faucet Address of the faucet contract
      */
     function setFaucetContract(address _faucet) external onlyOwner {
-        require(_faucet != address(0), "FlashToken: zero address");
+        require(_faucet != address(0), "USDT: zero address");
         faucetContract = _faucet;
         emit FaucetContractSet(_faucet);
     }

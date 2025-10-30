@@ -1,7 +1,7 @@
 {
   "name": "flash-usdt-simulator",
   "version": "1.0.0",
-  "description": "Educational Flash-USDT simulator for testing on testnets",
+  "description": "Educational USDT simulator for testing on testnets",
   "main": "index.js",
   "scripts": {
     "compile": "hardhat compile",

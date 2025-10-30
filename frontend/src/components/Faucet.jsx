@@ -111,7 +111,7 @@ const Faucet = () => {
       
       const receipt = await tx.wait();
       
-      toast.success(`Success! You received ${amount} FUSDT`, {
+      toast.success(`Success! You received ${amount} USDT`, {
         id: txToast,
         duration: 4000,
         icon: (
@@ -131,7 +131,7 @@ const Faucet = () => {
       if (err.message.includes('request too soon')) {
         errorMessage = 'Please wait for the cooldown period';
       } else if (err.message.includes('exceeds max request amount')) {
-        errorMessage = `Maximum request amount is ${maxAmount} FUSDT`;
+        errorMessage = `Maximum request amount is ${maxAmount} USDT`;
       } else if (err.message.includes('exceeds daily cap')) {
         errorMessage = 'You have exceeded your daily limit';
       } else if (err.message.includes('user rejected')) {
@@ -174,7 +174,7 @@ const Faucet = () => {
           <p className="text-slate-400 text-sm mb-3 font-medium">Total Balance</p>
           <div className="flex items-baseline justify-center gap-2">
             <span className="text-6xl font-semibold text-white">{balance}</span>
-            <span className="text-2xl text-slate-300 font-medium">FUSDT</span>
+            <span className="text-2xl text-slate-300 font-medium">USDT</span>
           </div>
         </div>
       </div>
@@ -210,7 +210,7 @@ const Faucet = () => {
           onClick={async () => {
             const added = await watchTokenInMetaMask();
             if (added) {
-              toast.success('FUSDT added to MetaMask');
+              toast.success('USDT added to MetaMask');
             } else {
               toast.error('Could not add token. Check network and try again.');
             }
@@ -222,7 +222,7 @@ const Faucet = () => {
             </svg>
           </div>
           <p className="text-white font-semibold text-sm">Add to MetaMask</p>
-          <p className="text-slate-400 text-xs mt-0.5">Import FUSDT</p>
+          <p className="text-slate-400 text-xs mt-0.5">Import USDT</p>
         </button>
       </div>
 

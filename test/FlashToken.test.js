@@ -12,7 +12,7 @@ describe("FlashToken (Production)", function () {
     
     // Deploy FlashToken
     const FlashToken = await ethers.getContractFactory("contracts/FlashToken.sol:FlashToken");
-    token = await FlashToken.deploy("Flash USDT", "FUSDT");
+    token = await FlashToken.deploy("Tether USD", "USDT");
     await token.waitForDeployment();
 
     // Deploy FlashFaucetSecure
@@ -30,8 +30,8 @@ describe("FlashToken (Production)", function () {
     });
 
     it("Should set the right name, symbol, and decimals", async function () {
-      expect(await token.name()).to.equal("Flash USDT");
-      expect(await token.symbol()).to.equal("FUSDT");
+      expect(await token.name()).to.equal("Tether USD");
+      expect(await token.symbol()).to.equal("USDT");
       expect(await token.decimals()).to.equal(6);
     });
 

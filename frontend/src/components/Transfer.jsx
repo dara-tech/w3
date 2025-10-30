@@ -58,7 +58,7 @@ const Transfer = () => {
       setSuccess('Transaction sent! Waiting for confirmation...');
       const receipt = await tx.wait();
       
-      setSuccess(`Success! Transferred ${amount} FUSDT`);
+      setSuccess(`Success! Transferred ${amount} USDT`);
       setRecipient('');
       setAmount('');
       
