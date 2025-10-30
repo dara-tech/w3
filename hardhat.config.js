@@ -33,10 +33,18 @@ module.exports = {
       accounts: process.env.PRIVATE_KEY && process.env.PRIVATE_KEY.length >= 60 ? [process.env.PRIVATE_KEY] : [],
       chainId: 17000,
     },
+    mainnet: {
+      url: process.env.MAINNET_RPC_URL || `https://mainnet.infura.io/v3/${process.env.INFURA_API_KEY || ''}`,
+      accounts: process.env.PRIVATE_KEY ? [
+        process.env.PRIVATE_KEY.startsWith('0x') ? process.env.PRIVATE_KEY : `0x${process.env.PRIVATE_KEY}`
+      ] : [],
+      chainId: 1,
+    },
   },
   etherscan: {
     apiKey: {
       sepolia: process.env.ETHERSCAN_API_KEY || "",
+      mainnet: process.env.ETHERSCAN_API_KEY || "",
     },
   },
   sourcify: {
