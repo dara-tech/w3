@@ -214,11 +214,14 @@ const Faucet = () => {
             }
             
             try {
-              const added = await watchTokenInMetaMask();
-              if (added) {
+              const result = await watchTokenInMetaMask();
+              if (result.success) {
                 toast.success('USDT successfully added to your wallet!');
               } else {
-                toast.error('Could not add token. Please try again.');
+                // Don't show error if user cancelled
+                if (result.error && !result.error.includes('cancelled')) {
+                  toast.error(result.error || 'Could not add token. Please try again.');
+                }
               }
             } catch (error) {
               console.error('Error adding token:', error);

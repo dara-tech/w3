@@ -77,12 +77,12 @@ export const getFaucetContract = (signer) => {
 export const watchTokenInMetaMask = async () => {
   if (!window.ethereum) {
     console.warn('MetaMask is not installed');
-    return false;
+    return { success: false, error: 'MetaMask is not installed' };
   }
   
   if (!CONTRACT_ADDRESSES.token) {
     console.warn('Token contract address not available');
-    return false;
+    return { success: false, error: 'Token contract address not available' };
   }
   
   try {
@@ -90,6 +90,12 @@ export const watchTokenInMetaMask = async () => {
     // This ensures consistency even if contract was deployed with different values
     const symbol = 'USDT';
     const decimals = 6;
+    
+    console.log('Adding token to wallet:', {
+      address: CONTRACT_ADDRESSES.token,
+      symbol,
+      decimals
+    });
     
     const wasAdded = await window.ethereum.request({
       method: 'wallet_watchAsset',
@@ -102,10 +108,17 @@ export const watchTokenInMetaMask = async () => {
         },
       },
     });
-    return Boolean(wasAdded);
+    
+    console.log('MetaMask response:', wasAdded);
+    
+    if (wasAdded === null || wasAdded === false) {
+      return { success: false, error: 'User cancelled or request failed' };
+    }
+    
+    return { success: true };
   } catch (err) {
     console.error('watchAsset failed', err);
-    return false;
+    return { success: false, error: err.message || 'Failed to add token' };
   }
 };
 
