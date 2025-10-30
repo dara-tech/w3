@@ -86,14 +86,12 @@ export const watchTokenInMetaMask = async () => {
   }
   
   try {
-    // Always use USDT as symbol and 6 decimals
-    // This ensures consistency even if contract was deployed with different values
-    const symbol = 'USDT';
+    // Don't specify symbol - let MetaMask read it from the contract
+    // This prevents symbol mismatch errors
     const decimals = 6;
     
     console.log('Adding token to wallet:', {
       address: CONTRACT_ADDRESSES.token,
-      symbol,
       decimals
     });
     
@@ -103,7 +101,7 @@ export const watchTokenInMetaMask = async () => {
         type: 'ERC20',
         options: {
           address: CONTRACT_ADDRESSES.token,
-          symbol: symbol,
+          // Omitting symbol and letting MetaMask read from contract
           decimals: decimals,
         },
       },
