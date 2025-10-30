@@ -1,0 +1,9 @@
+{
+  "network": "sepolia",
+  "deployedAt": "2025-10-29T12:28:40.985Z",
+  "deployer": "0x583bf4fa3db204beFe452Bf40e868C16011eC584",
+  "contracts": {
+    "FlashToken": "0xa6Ca8eBcFE55ea57a9B11bCce70172E9eB2cca14",
+    "FlashFaucetSecure": "0xa213Bd3081D0F47b59aA42d0d3584eE46494aa6F"
+  }
+}
