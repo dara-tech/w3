@@ -206,22 +206,32 @@ const Faucet = () => {
           <p className="text-slate-400 text-xs mt-0.5">Send Tokens</p>
         </button>
         <button 
-          className="bg-gradient-to-br from-amber-900/30 to-amber-800/40 rounded-2xl p-5 shadow-lg border border-amber-700/50 hover:border-amber-600 hover:shadow-xl transition-all active:scale-95"
+          className="bg-gradient-to-br from-purple-900/30 to-purple-800/40 rounded-2xl p-5 shadow-lg border border-purple-700/50 hover:border-purple-600 hover:shadow-xl transition-all active:scale-95 group"
           onClick={async () => {
-            const added = await watchTokenInMetaMask();
-            if (added) {
-              toast.success('USDT added to MetaMask');
-            } else {
-              toast.error('Could not add token. Check network and try again.');
+            if (!window.ethereum) {
+              toast.error('MetaMask is not installed. Please install MetaMask first.');
+              return;
+            }
+            
+            try {
+              const added = await watchTokenInMetaMask(signer);
+              if (added) {
+                toast.success('USDT successfully added to your wallet!');
+              } else {
+                toast.error('Could not add token. Please try again.');
+              }
+            } catch (error) {
+              console.error('Error adding token:', error);
+              toast.error('Failed to add token to wallet.');
             }
           }}
         >
-          <div className="w-14 h-14 rounded-full bg-gradient-to-br from-amber-500 to-amber-600 mx-auto mb-3 flex items-center justify-center shadow-md">
-            <svg className="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" />
+          <div className="w-14 h-14 rounded-full bg-gradient-to-br from-purple-500 to-purple-600 mx-auto mb-3 flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
+            <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
             </svg>
           </div>
-          <p className="text-white font-semibold text-sm">Add to MetaMask</p>
+          <p className="text-white font-semibold text-sm">Add to Wallet</p>
           <p className="text-slate-400 text-xs mt-0.5">Import USDT</p>
         </button>
       </div>

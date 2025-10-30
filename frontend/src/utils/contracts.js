@@ -74,18 +74,46 @@ export const getFaucetContract = (signer) => {
 };
 
 // Prompt MetaMask to watch the token asset
-export const watchTokenInMetaMask = async () => {
-  if (!window.ethereum) return false;
-  if (!CONTRACT_ADDRESSES.token) return false;
+export const watchTokenInMetaMask = async (signer = null) => {
+  if (!window.ethereum) {
+    console.warn('MetaMask is not installed');
+    return false;
+  }
+  
+  if (!CONTRACT_ADDRESSES.token) {
+    console.warn('Token contract address not available');
+    return false;
+  }
+  
   try {
+    let symbol = 'USDT';
+    let decimals = 6;
+    
+    // Try to get token details if signer is provided
+    if (signer) {
+      try {
+        const tokenContract = getTokenContract(signer);
+        const [tokenName, tokenSymbol, tokenDecimals] = await Promise.all([
+          tokenContract.name().catch(() => null),
+          tokenContract.symbol().catch(() => null),
+          tokenContract.decimals().catch(() => null)
+        ]);
+        
+        if (tokenSymbol) symbol = tokenSymbol;
+        if (tokenDecimals !== null) decimals = Number(tokenDecimals);
+      } catch (err) {
+        console.log('Could not fetch token details, using defaults');
+      }
+    }
+    
     const wasAdded = await window.ethereum.request({
       method: 'wallet_watchAsset',
       params: {
         type: 'ERC20',
         options: {
           address: CONTRACT_ADDRESSES.token,
-          symbol: 'USDT',
-          decimals: 6,
+          symbol: symbol,
+          decimals: decimals,
         },
       },
     });
