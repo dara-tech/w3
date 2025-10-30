@@ -74,7 +74,7 @@ export const getFaucetContract = (signer) => {
 };
 
 // Prompt MetaMask to watch the token asset
-export const watchTokenInMetaMask = async (signer = null) => {
+export const watchTokenInMetaMask = async () => {
   if (!window.ethereum) {
     console.warn('MetaMask is not installed');
     return false;
@@ -86,25 +86,10 @@ export const watchTokenInMetaMask = async (signer = null) => {
   }
   
   try {
-    let symbol = 'USDT';
-    let decimals = 6;
-    
-    // Try to get token details if signer is provided
-    if (signer) {
-      try {
-        const tokenContract = getTokenContract(signer);
-        const [tokenName, tokenSymbol, tokenDecimals] = await Promise.all([
-          tokenContract.name().catch(() => null),
-          tokenContract.symbol().catch(() => null),
-          tokenContract.decimals().catch(() => null)
-        ]);
-        
-        if (tokenSymbol) symbol = tokenSymbol;
-        if (tokenDecimals !== null) decimals = Number(tokenDecimals);
-      } catch (err) {
-        console.log('Could not fetch token details, using defaults');
-      }
-    }
+    // Always use USDT as symbol and 6 decimals
+    // This ensures consistency even if contract was deployed with different values
+    const symbol = 'USDT';
+    const decimals = 6;
     
     const wasAdded = await window.ethereum.request({
       method: 'wallet_watchAsset',

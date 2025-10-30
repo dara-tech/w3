@@ -214,7 +214,7 @@ const Faucet = () => {
             }
             
             try {
-              const added = await watchTokenInMetaMask(signer);
+              const added = await watchTokenInMetaMask();
               if (added) {
                 toast.success('USDT successfully added to your wallet!');
               } else {
