@@ -56,10 +56,10 @@ contract FlashFaucetSecure is Ownable, Pausable, ReentrancyGuard {
         require(_token != address(0), "FlashFaucetSecure: zero address");
         token = FlashToken(_token);
         
-        // Initial configuration: 5 minutes cooldown, 1000 tokens max per request, 5000 tokens daily cap
+        // Initial configuration: 5 minutes cooldown, 1M tokens max per request, 5M tokens daily cap
         requestCooldown = 300; // 5 minutes
-        maxRequestAmount = 1000 * 10**6; // 1000 tokens (6 decimals)
-        dailyCapPerUser = 5000 * 10**6; // 5000 tokens per day
+        maxRequestAmount = 1000000 * 10**6; // 1M tokens (6 decimals)
+        dailyCapPerUser = 5000000 * 10**6; // 5M tokens per day
         
         emit ConfigurationUpdated(requestCooldown, maxRequestAmount, dailyCapPerUser);
     }
