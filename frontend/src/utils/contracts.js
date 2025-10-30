@@ -90,9 +90,13 @@ export const watchTokenInMetaMask = async () => {
     // This prevents symbol mismatch errors
     const decimals = 6;
     
+    // Token icon URL - must be publicly accessible
+    const image = `${window.location.origin}/usdt-icon.svg`;
+    
     console.log('Adding token to wallet:', {
       address: CONTRACT_ADDRESSES.token,
-      decimals
+      decimals,
+      image
     });
     
     const wasAdded = await window.ethereum.request({
@@ -103,6 +107,7 @@ export const watchTokenInMetaMask = async () => {
           address: CONTRACT_ADDRESSES.token,
           // Omitting symbol and letting MetaMask read from contract
           decimals: decimals,
+          image: image, // Token icon
         },
       },
     });
