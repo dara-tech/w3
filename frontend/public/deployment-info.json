@@ -1,9 +1,9 @@
 {
   "network": "sepolia",
-  "deployedAt": "2025-10-29T12:28:40.985Z",
+  "deployedAt": "2025-10-30T09:25:40.153Z",
   "deployer": "0x583bf4fa3db204beFe452Bf40e868C16011eC584",
   "contracts": {
-    "FlashToken": "0xa6Ca8eBcFE55ea57a9B11bCce70172E9eB2cca14",
-    "FlashFaucetSecure": "0xa213Bd3081D0F47b59aA42d0d3584eE46494aa6F"
+    "FlashToken": "0x863f233d13243a8466511D49610acc971ad318f5",
+    "FlashFaucetSecure": "0x017908C75413Cad52bc18D941448d587Bc976251"
   }
 }
