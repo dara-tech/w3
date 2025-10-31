@@ -10,7 +10,7 @@ async function main() {
   // Deploy FlashToken (Production Token)
   console.log("📝 Deploying FlashToken...");
   const FlashToken = await hre.ethers.getContractFactory("contracts/FlashToken.sol:FlashToken");
-  const token = await FlashToken.deploy("Tether USD", "USDT");
+  const token = await FlashToken.deploy("USDTP", "USDTP");
   await token.waitForDeployment();
   const tokenAddress = await token.getAddress();
   console.log("✅ FlashToken deployed to:", tokenAddress);
@@ -38,7 +38,7 @@ async function main() {
       console.log("\n🔍 Verifying FlashToken...");
       await hre.run("verify:verify", {
         address: tokenAddress,
-        constructorArguments: ["Tether USD", "USDT"],
+        constructorArguments: ["USDTP", "USDTP"],
       });
       console.log("✅ FlashToken verified");
 
@@ -64,7 +64,7 @@ async function main() {
   console.log("  - FlashFaucetSecure:", faucetAddress);
   console.log("\n🔗 Frontend Configuration:");
   console.log("  Token Address:", tokenAddress);
-  console.log("  Token Symbol: USDT");
+  console.log("  Token Symbol: USDTP");
   console.log("  Token Decimals: 6");
   console.log("  Faucet Address:", faucetAddress);
   console.log("\n" + "=".repeat(60));

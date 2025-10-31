@@ -7,8 +7,8 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Pausable.sol";
 
 /**
- * @title USDT
- * @notice Production-ready ERC-20 token for USDT
+ * @title USDTP
+ * @notice Production-ready ERC-20 token for USDTP
  * @dev Secured with OpenZeppelin contracts and rate limiting
  * 
  * Security Features:
@@ -20,7 +20,7 @@ import "@openzeppelin/contracts/utils/Pausable.sol";
  */
 contract FlashToken is ERC20, Ownable, Pausable, ReentrancyGuard {
     
-    // Decimals override (USDT uses 6 decimals)
+    // Decimals override (USDTP uses 6 decimals)
     uint8 private constant _decimals = 6;
     
     // Maximum supply (1 billion tokens)
@@ -55,12 +55,12 @@ contract FlashToken is ERC20, Ownable, Pausable, ReentrancyGuard {
      * @param amount Amount of tokens to mint (in smallest unit, 6 decimals)
      */
     function mint(address to, uint256 amount) external whenNotPaused nonReentrant {
-        require(msg.sender == faucetContract, "USDT: only faucet can mint");
-        require(to != address(0), "USDT: cannot mint to zero address");
-        require(amount > 0, "USDT: amount must be greater than zero");
+        require(msg.sender == faucetContract, "USDTP: only faucet can mint");
+        require(to != address(0), "USDTP: cannot mint to zero address");
+        require(amount > 0, "USDTP: amount must be greater than zero");
         require(
             totalMinted + amount <= MAX_SUPPLY,
-            "USDT: mint would exceed max supply"
+            "USDTP: mint would exceed max supply"
         );
         
         totalMinted += amount;
@@ -74,7 +74,7 @@ contract FlashToken is ERC20, Ownable, Pausable, ReentrancyGuard {
      * @param _faucet Address of the faucet contract
      */
     function setFaucetContract(address _faucet) external onlyOwner {
-        require(_faucet != address(0), "USDT: zero address");
+        require(_faucet != address(0), "USDTP: zero address");
         faucetContract = _faucet;
         emit FaucetContractSet(_faucet);
     }
@@ -123,7 +123,7 @@ contract FlashToken is ERC20, Ownable, Pausable, ReentrancyGuard {
     }
     
     /**
-     * @dev Override decimals to return 6 (like USDT)
+     * @dev Override decimals to return 6 (like USDTP)
      */
     function decimals() public pure override returns (uint8) {
         return _decimals;
